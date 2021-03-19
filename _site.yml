@@ -1,7 +1,7 @@
-name: "nicks-website"
+name: "albertos-website"
 output_dir: "."
 navbar:
-  title: "Nicks Website"
+  title: "PREDI 4M"
   left:
     - text: "Inicio"
       href: index.html
@@ -14,6 +14,8 @@ navbar:
     - text: "¿Quieres participar?"
       href: participate.html
 output:
-  html_document:
+  rmarkdown::html_document:
     theme: united
     css: style.css
+
+    
