@@ -15,6 +15,8 @@ navbar:
       href: participate.html
 output:
   rmarkdown::html_document:
-    theme: cerulean
+     css: style.css
 
-    
+---
+output: rmdformats::material
+---

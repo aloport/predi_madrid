@@ -1,7 +1,4 @@
----
-title: "Inicio"
----
-_________
+____
 Bienvenid@ a PREDI, la herramienta electoral basada en mercados de predicción que ofrece *predicciones diarias para las elecciones autonómicas de la C. Madrid 2021*.
 
 A continuación, los resultados actualizados [19 de marzo de 2021].
@@ -61,32 +58,7 @@ hchart(
   innerSize = "60%",
   startAngle = -90, endAngle = 90,
   dataLabels = list(format = "{point.name}, {point.vote} <br> ({point.seats})")
-) %>% 
-  # con la siguiente opción desactivamos los 'dataLabels' para que no 
-  # exista infomración redundante
-  hc_plotOptions(
-    series = list(dataLabels = list(enabled = FALSE))
-  ) %>% 
-  hc_tooltip(
-    useHTML = TRUE,
-    style = list(fontSize = "20px"),
-    headerFormat = "",
-    pointFormat = "<div style='text-align: center;'> <b>{point.name}</b><br>{point.seats} escaños<br>{point.vote}% votos</div>",
-    positioner = JS(
-      "function () {
-      
-        /* one of the most important parts! */
-        xp =  this.chart.chartWidth/2 - this.label.width/2
-        yp =  this.chart.chartHeight/2 - this.label.height/1
-      
-        return { x: xp, y: yp };
-      
-      }"),
-    shadow = FALSE,
-    borderWidth = 0,
-    backgroundColor = "transparent",
-    hideDelay = 1000
-  )
+) 
 
 ```
 
