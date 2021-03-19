@@ -24,6 +24,7 @@ datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia
   ) %>%
   formatStyle('party', fontWeight = 'bold')
 
+
 hchart(vote_lines, "line", hcaes(date, vote, group = party), marker = list(enabled = TRUE), color=c("#E75D29" #good
         ,"#82ECAB"
         ,"#3C88D0" #good

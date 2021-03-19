@@ -5,9 +5,9 @@ navbar:
   left:
     - text: "Inicio"
       href: index.html
-    - text: "Predicción de voto"
-      href: gobierno.html      
     - text: "Predicción de gobierno"
+      href: gobierno.html      
+    - text: "Predicción de voto"
       href: voto.html
     - text: "Funcionamiento"     
       href: about.html
@@ -15,7 +15,7 @@ navbar:
       href: participate.html
 output:
   rmarkdown::html_document:
-    theme: united
+    theme: yeti
     css: style.css
 
     
