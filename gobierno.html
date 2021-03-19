@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -163,33 +163,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 41px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h2 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .dropdown-submenu {
   position: relative;
@@ -366,10 +366,10 @@ $(document).ready(function () {
 
 <p>¿Cómo de probable es que estos sean los gobiernos resultantes? [Actualizado: 19 de marzo de 2019]</p>
 <hr />
-<div id="htmlwidget-ec64542a194a868aafc6" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ec64542a194a868aafc6">{"x":{"filter":"none","extensions":["FixedColumns"],"data":[["PP y Vox","PSOE, UP y Más Madrid","PP con apoyos externos","PP en mayoría","PSOE, UP, Más Madrid y Cs","Repetición de elecciones"],[50.22,31.04,10,2.79,2.73,2.21],[-2.8,8.28,-3.25,0.44,0.39,-1.76]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Tipo de gobierno<\/th>\n      <th>Probabilidad<\/th>\n      <th>Tendencia<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":false,"fixedColumns":true,"scrollCollapse":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
-<div id="htmlwidget-84ae189fde2c6688b339" style="width:100%;height:500px;" class="highchart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-84ae189fde2c6688b339">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"xAxis":{"categories":["2021-03-15","2021-03-16","2021-03-17","2021-03-18"],"tickInterval":1},"series":[{"data":[30.83,56.11,53.02,50.22],"name":"PP y Vox","color":"#11D78D"},{"data":[7.25,4.84,2.35,2.79],"name":"PP en mayoría","color":"#0F86DF"},{"data":[20.88,17.58,13.25,10],"name":"PP con apoyos externos","color":"#10C7DF"},{"data":[12.88,8.94,22.76,31.04],"name":"PSOE, UP y Más Madrid","color":"#874EFE"},{"data":[10.41,4.87,2.34,2.73],"name":"PSOE, UP, Más Madrid y Cs","color":"#FF6251"},{"data":[4.84,2.35,2.31,1.01],"name":"PSOE y Cs","color":"#FFAA00"},{"data":[12.92,5.31,3.97,2.21],"name":"Repetición de elecciones","color":"#444444"}],"tooltip":{"shared":true,"formatter":"function(tooltip){\n          function isArray(obj) {\n          return Object.prototype.toString.call(obj) === '[object Array]';\n          }\n\n          function splat(obj) {\n          return isArray(obj) ? obj : [obj];\n          }\n\n          var items = this.points || splat(this), series = items[0].series, s;\n\n          // sort the values\n          items.sort(function(a, b){\n          return ((a.y < b.y) ? -1 : ((a.y > b.y) ? 1 : 0));\n          });\n          items.reverse();\n\n          return tooltip.defaultFormatter.call(this, tooltip);\n        }","useHTML":true,"headerFormat":"<small>{point.key}<\/small><table>","pointFormat":"<tr><td style=\"color: {series.color}\">{series.name}: <\/td><td style=\"text-align: right\"><b>{point.y}<\/b><\/td><\/tr>","footerFormat":"<\/table>","crosshairs":true,"backgroundColor":"#FBFEFF","borderWidth":0}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":["hc_opts.tooltip.formatter"],"jsHooks":[]}</script>
+<div id="htmlwidget-8119bc1bfa3f7112e0b7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8119bc1bfa3f7112e0b7">{"x":{"filter":"none","extensions":["FixedColumns"],"data":[["PP y Vox","PSOE, UP y Más Madrid","PP con apoyos externos","PP en mayoría","PSOE, UP, Más Madrid y Cs","Repetición de elecciones"],[50.22,31.04,10,2.79,2.73,2.21],[-2.8,8.28,-3.25,0.44,0.39,-1.76]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Tipo de gobierno<\/th>\n      <th>Probabilidad<\/th>\n      <th>Tendencia<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":false,"fixedColumns":true,"scrollCollapse":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<div id="htmlwidget-33859c2b05aa0a3cf698" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33859c2b05aa0a3cf698">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"xAxis":{"categories":["2021-03-15","2021-03-16","2021-03-17","2021-03-18"],"tickInterval":1},"series":[{"data":[30.83,56.11,53.02,50.22],"name":"PP y Vox","color":"#11D78D"},{"data":[7.25,4.84,2.35,2.79],"name":"PP en mayoría","color":"#0F86DF"},{"data":[20.88,17.58,13.25,10],"name":"PP con apoyos externos","color":"#10C7DF"},{"data":[12.88,8.94,22.76,31.04],"name":"PSOE, UP y Más Madrid","color":"#874EFE"},{"data":[10.41,4.87,2.34,2.73],"name":"PSOE, UP, Más Madrid y Cs","color":"#FF6251"},{"data":[4.84,2.35,2.31,1.01],"name":"PSOE y Cs","color":"#FFAA00"},{"data":[12.92,5.31,3.97,2.21],"name":"Repetición de elecciones","color":"#444444"}],"tooltip":{"shared":true,"formatter":"function(tooltip){\n          function isArray(obj) {\n          return Object.prototype.toString.call(obj) === '[object Array]';\n          }\n\n          function splat(obj) {\n          return isArray(obj) ? obj : [obj];\n          }\n\n          var items = this.points || splat(this), series = items[0].series, s;\n\n          // sort the values\n          items.sort(function(a, b){\n          return ((a.y < b.y) ? -1 : ((a.y > b.y) ? 1 : 0));\n          });\n          items.reverse();\n\n          return tooltip.defaultFormatter.call(this, tooltip);\n        }","useHTML":true,"headerFormat":"<small>{point.key}<\/small><table>","pointFormat":"<tr><td style=\"color: {series.color}\">{series.name}: <\/td><td style=\"text-align: right\"><b>{point.y}<\/b><\/td><\/tr>","footerFormat":"<\/table>","crosshairs":true,"backgroundColor":"#FBFEFF","borderWidth":0}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":["hc_opts.tooltip.formatter"],"jsHooks":[]}</script>
 <hr />
 <p>Contacto: Alberto López Ortega <em><a href="mailto:alberto.lopezortega@uzh.ch" class="email">alberto.lopezortega@uzh.ch</a></em> , <a href="https://twitter.com/bertous">bertous</a></p>
 
