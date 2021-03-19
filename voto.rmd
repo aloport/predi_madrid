@@ -7,45 +7,22 @@ Estos los resultados electorales más probables para los 5 grandes partidos [act
 _________________
 
 
-```{r graph03, echo=FALSE, out.width = '20%'}
-
-hchart(
-  vote_donut, "pie", hcaes(name = party, y = vote, color= colors),
-  name = "Escaños",
-  innerSize = "60%",
-  startAngle = -90, endAngle = 90,
-  dataLabels = list(format = "{point.name}, {point.vote} <br> ({point.seats})")
-) %>% 
-  # con la siguiente opción desactivamos los 'dataLabels' para que no 
-  # exista infomración redundante
-  hc_plotOptions(
-    series = list(dataLabels = list(enabled = FALSE))
-  ) %>% 
-  hc_tooltip(
-    useHTML = TRUE,
-    style = list(fontSize = "20px"),
-    headerFormat = "",
-    pointFormat = "<div style='text-align: center;'> <b>{point.name}</b><br>{point.seats} escaños<br>{point.vote}% votos</div>",
-    positioner = JS(
-      "function () {
-      
-        /* one of the most important parts! */
-        xp =  this.chart.chartWidth/2 - this.label.width/2
-        yp =  this.chart.chartHeight/2 - this.label.height/1
-      
-        return { x: xp, y: yp };
-      
-      }"),
-    shadow = FALSE,
-    borderWidth = 0,
-    backgroundColor = "transparent",
-    hideDelay = 1000
-  )
-
-
-```
-
 ```{r graph04, echo=FALSE, out.width = '20%'}
+datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia (voto)', 'Escaños', 'Tendencia (escaños)'), extensions = 'FixedColumns',
+  options = list(
+    dom = 'r',
+    scrollX = TRUE,
+    fixedColumns = TRUE, pageLength = 10
+  )) %>%
+  formatStyle(
+    'diff_vote',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  )  %>%
+  formatStyle(
+    'diff_seats',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  ) %>%
+  formatStyle('party', fontWeight = 'bold')
 
 hchart(vote_lines, "line", hcaes(date, vote, group = party), marker = list(enabled = TRUE), color=c("#E75D29" #good
         ,"#82ECAB"

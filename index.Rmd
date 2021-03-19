@@ -8,21 +8,42 @@ A continuación, los resultados actualizados [19 de marzo de 2021].
 - __[Predicción sobre el gobierno resultante](https://aloport.github.io/predi/gobierno.html)__
 
 ```{r holio1, echo = FALSE, fig.align='center'}
-myColors_gen <- c("#0000BA", "#9A0000", "#A9A9A9", "#C57420", "#FF3827", "#FF9300", "#04AAFF")
- 
-library(DT)
-
-datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobierno', 'Probabilidad', 'Tendencia'), extensions = 'FixedColumns',
-  options = list( dom= "t",
-    scrollX = FALSE,
-    fixedColumns = TRUE,
-  scrollCollapse = TRUE, pageLength = 10
-  )) %>%
-  formatStyle(
-    'diff_prob',
-    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
-  ) %>%
-  formatStyle('party', fontWeight = 'bold')
+highchart() %>%
+  hc_add_series(
+    data = government_tree,
+    type = "sunburst",
+    name = "Probabilidad",
+    # type=  "treemap",
+    allowDrillToNode = TRUE,
+    colors= c("transparent", "#0F86DF", "#FF6251", "#DDDF00"),
+    tooltip = list(
+      headerFormat = "<b>{point.key}</b><br>",
+      pointFormat = "{point.value}% probabilidad"
+    ),
+    levels = list(
+      list(
+        level = 1,
+        borderWidth = 0,
+        borderColor = "transparent",
+         colorByPoint = TRUE,
+        dataLabels = list(enabled = TRUE)
+      ),
+      list(
+        level = 2,
+        borderWidth = 0,
+        borderColor = "transparent",
+        colorByPoint = TRUE,
+        dataLabels = list(enabled = TRUE)
+      ),
+      list(
+        level = 3,
+        borderWidth = 0,
+        borderColor = "transparent",
+        colorVariation = list(key = "brightness", to = 0.50),
+        dataLabels = list(enabled = TRUE)
+      )
+    )
+  )
 
 
 ```
@@ -30,22 +51,38 @@ datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobie
 - __[Estimación de voto a partidos](https://aloport.github.io/predi/voto.html)__
 
 ```{r holio2, echo = FALSE, fig.align='center'}
-
-datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia (voto)', 'Escaños', 'Tendencia (escaños)'), extensions = 'FixedColumns',
-  options = list(
-    dom = 'r',
-    scrollX = TRUE,
-    fixedColumns = TRUE, pageLength = 10
-  )) %>%
-  formatStyle(
-    'diff_vote',
-    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
-  )  %>%
-  formatStyle(
-    'diff_seats',
-    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
-  ) %>%
-  formatStyle('party', fontWeight = 'bold')
+hchart(
+  vote_donut, "pie", hcaes(name = party, y = vote, color= colors),
+  name = "Escaños",
+  innerSize = "60%",
+  startAngle = -90, endAngle = 90,
+  dataLabels = list(format = "{point.name}, {point.vote} <br> ({point.seats})")
+) %>% 
+  # con la siguiente opción desactivamos los 'dataLabels' para que no 
+  # exista infomración redundante
+  hc_plotOptions(
+    series = list(dataLabels = list(enabled = FALSE))
+  ) %>% 
+  hc_tooltip(
+    useHTML = TRUE,
+    style = list(fontSize = "20px"),
+    headerFormat = "",
+    pointFormat = "<div style='text-align: center;'> <b>{point.name}</b><br>{point.seats} escaños<br>{point.vote}% votos</div>",
+    positioner = JS(
+      "function () {
+      
+        /* one of the most important parts! */
+        xp =  this.chart.chartWidth/2 - this.label.width/2
+        yp =  this.chart.chartHeight/2 - this.label.height/1
+      
+        return { x: xp, y: yp };
+      
+      }"),
+    shadow = FALSE,
+    borderWidth = 0,
+    backgroundColor = "transparent",
+    hideDelay = 1000
+  )
 
 
 ```

@@ -10,48 +10,22 @@ _________________
 
 
 
-```{r graph0, echo=FALSE, out.width = '40%'}
-highchart() %>%
-  hc_add_series(
-    data = government_tree,
-    type = "sunburst",
-    name = "Probabilidad",
-    # type=  "treemap",
-    allowDrillToNode = TRUE,
-    colors= c("transparent", "#0F86DF", "#FF6251", "#DDDF00"),
-    tooltip = list(
-      headerFormat = "<b>{point.key}</b><br>",
-      pointFormat = "{point.value}% probabilidad"
-    ),
-    levels = list(
-      list(
-        level = 1,
-        borderWidth = 0,
-        borderColor = "transparent",
-         colorByPoint = TRUE,
-        dataLabels = list(enabled = TRUE)
-      ),
-      list(
-        level = 2,
-        borderWidth = 0,
-        borderColor = "transparent",
-        colorByPoint = TRUE,
-        dataLabels = list(enabled = TRUE)
-      ),
-      list(
-        level = 3,
-        borderWidth = 0,
-        borderColor = "transparent",
-        colorVariation = list(key = "brightness", to = 0.50),
-        dataLabels = list(enabled = TRUE)
-      )
-    )
-  )
-
-
-```
-
 ```{r graph1, echo=FALSE, out.width = '20%'}
+myColors_gen <- c("#0000BA", "#9A0000", "#A9A9A9", "#C57420", "#FF3827", "#FF9300", "#04AAFF")
+ 
+library(DT)
+
+datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobierno', 'Probabilidad', 'Tendencia'), extensions = 'FixedColumns',
+  options = list( dom= "t",
+    scrollX = FALSE,
+    fixedColumns = TRUE,
+  scrollCollapse = TRUE, pageLength = 10
+  )) %>%
+  formatStyle(
+    'diff_prob',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  ) %>%
+  formatStyle('party', fontWeight = 'bold')
 
 
 highchart() %>% 
