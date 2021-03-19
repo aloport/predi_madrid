@@ -1,5 +1,58 @@
----
-title: "Nick's Website"
----
+_________
+Bienvenid@ a PREDI, la herramienta electoral basada en mercados de predicción que ofrece *predicciones diarias para las elecciones autonómicas de la C. Madrid 2021*.
 
-Hello, World! tttttt
+A continuación, los resultados actualizados [19 de marzo de 2021].
+ 
+-------------------
+
+- __[Predicción sobre el gobierno resultante](https://aloport.github.io/predi/gobierno.html)__
+
+```{r holio1, echo = FALSE, fig.align='center'}
+myColors_gen <- c("#0000BA", "#9A0000", "#A9A9A9", "#C57420", "#FF3827", "#FF9300", "#04AAFF")
+ 
+library(DT)
+
+datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobierno', 'Probabilidad', 'Tendencia'), extensions = 'FixedColumns',
+  options = list( dom= "t",
+    scrollX = FALSE,
+    fixedColumns = TRUE,
+  scrollCollapse = TRUE, pageLength = 10
+  )) %>%
+  formatStyle(
+    'diff_prob',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  ) %>%
+  formatStyle('party', fontWeight = 'bold')
+
+
+```
+
+- __[Estimación de voto a partidos](https://aloport.github.io/predi/voto.html)__
+
+```{r holio2, echo = FALSE, fig.align='center'}
+
+datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia (voto)', 'Escaños', 'Tendencia (escaños)'), extensions = 'FixedColumns',
+  options = list(
+    dom = 'r',
+    scrollX = TRUE,
+    fixedColumns = TRUE, pageLength = 10
+  )) %>%
+  formatStyle(
+    'diff_vote',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  )  %>%
+  formatStyle(
+    'diff_seats',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  ) %>%
+  formatStyle('party', fontWeight = 'bold')
+
+
+```
+
+
+[Metodología](https://aloport.github.io/predi/projects.html) • [Sobre nuestro proyecto de investigación](https://aloport.github.io/predi/about.html) • [¿Quieres participar en el mercado de predicción?](https://aloport.github.io/predi/participate.html)
+
+_____
+
+Contacto: Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)

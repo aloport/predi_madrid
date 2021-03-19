@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Predicción diaria de voto a partidos</title>
+
+<script src="site_libs/jquery-3.5.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="site_libs/proj4js-2.3.15/proj4.js"></script>
+<link href="site_libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
+<script src="site_libs/highcharts-8.1.2/highcharts.js"></script>
+<script src="site_libs/highcharts-8.1.2/highcharts-3d.js"></script>
+<script src="site_libs/highcharts-8.1.2/highcharts-more.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/stock.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/map.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/annotations.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/data.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/drilldown.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/item-series.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/exporting.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/export-data.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/funnel.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/heatmap.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/treemap.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/sankey.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/organization.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/streamgraph.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/sunburst.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/vector.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/wordcloud.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/xrange.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/tilemap.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/venn.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/gantt.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/timeline.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/bullet.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/coloraxis.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/dumbbell.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/lollipop.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/series-label.js"></script>
+<script src="site_libs/highcharts-8.1.2/plugins/motion.js"></script>
+<script src="site_libs/highcharts-8.1.2/custom/reset.js"></script>
+<script src="site_libs/highcharts-8.1.2/modules/boost.js"></script>
+<script src="site_libs/highchart-binding-0.8.2/highchart.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PREDI 4M</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Elecciones Madrid 4M
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="gobierno.html">Predicción de voto</a>
+    </li>
+    <li>
+      <a href="voto.html">Predicción de gobierno</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">Funcionamiento</a>
+</li>
+<li>
+  <a href="participate.html">¿Quieres participar?</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Predicción diaria de voto a partidos</h1>
+
+</div>
+
+
+<p>Estos los resultados electorales más probables para los 5 grandes partidos [actualizados por última vez un día antes de las elecciones, el 27 de abril de 2019].</p>
+<hr />
+<div id="htmlwidget-2d3c01617cbc6c7430e2" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2d3c01617cbc6c7430e2">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"vote"}},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false,"dataLabels":{"enabled":false}},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"party":"PP","vote":37.64,"seats":55,"colors":"#3C88D0","y":37.64,"name":"PP","color":"#3C88D0"},{"party":"PSOE","vote":24.3,"seats":35,"colors":"#DA3832","y":24.3,"name":"PSOE","color":"#DA3832"},{"party":"Vox","vote":11.82,"seats":17,"colors":"#75BE4C","y":11.82,"name":"Vox","color":"#75BE4C"},{"party":"Unidas Podemos","vote":10.87,"seats":16,"colors":"#623165","y":10.87,"name":"Unidas Podemos","color":"#623165"},{"party":"Más Madrid","vote":9.36,"seats":13,"colors":"#82ECAB","y":9.36,"name":"Más Madrid","color":"#82ECAB"},{"party":"Cs","vote":4.51,"seats":0,"colors":"#E75D29","y":4.51,"name":"Cs","color":"#E75D29"}],"type":"pie","name":"Escaños","innerSize":"60%","startAngle":-90,"endAngle":90,"dataLabels":{"format":"{point.name}, {point.vote} <br> ({point.seats})"}}],"xAxis":{"type":null,"title":{"text":[]},"categories":null},"tooltip":{"useHTML":true,"style":{"fontSize":"20px"},"headerFormat":"","pointFormat":"<div style='text-align: center;'> <b>{point.name}<\/b><br>{point.seats} escaños<br>{point.vote}% votos<\/div>","positioner":"function () {\n      \n        /* one of the most important parts! */\n        xp =  this.chart.chartWidth/2 - this.label.width/2\n        yp =  this.chart.chartHeight/2 - this.label.height/1\n      \n        return { x: xp, y: yp };\n      \n      }","shadow":false,"borderWidth":0,"backgroundColor":"transparent","hideDelay":1000}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":["hc_opts.tooltip.positioner"],"jsHooks":[]}</script>
+<div id="htmlwidget-33c996a37cf8f91ece24" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33c996a37cf8f91ece24">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"Porcentaje estimados de voto %"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"Cs","data":[{"date":"2021-03-17","party":"Cs","vote":4.65799048436309,"seats":0,"colors":"#E75D29","x":1615939200000,"y":4.65799048436309},{"date":"2021-03-18","party":"Cs","vote":4.50650337717205,"seats":0,"colors":"#E75D29","x":1616025600000,"y":4.50650337717205}],"type":"line","marker":{"enabled":true},"color":"#E75D29"},{"name":"Más Madrid","data":[{"date":"2021-03-17","party":"Más Madrid","vote":8.63709386469365,"seats":12,"colors":"#82ECAB","x":1615939200000,"y":8.63709386469365},{"date":"2021-03-18","party":"Más Madrid","vote":9.36205258075354,"seats":13,"colors":"#82ECAB","x":1616025600000,"y":9.36205258075354}],"type":"line","marker":{"enabled":true},"color":"#82ECAB"},{"name":"PP","data":[{"date":"2021-03-17","party":"PP","vote":37.1671653291611,"seats":54,"colors":"#3C88D0","x":1615939200000,"y":37.1671653291611},{"date":"2021-03-18","party":"PP","vote":37.6381868543451,"seats":55,"colors":"#3C88D0","x":1616025600000,"y":37.6381868543451}],"type":"line","marker":{"enabled":true},"color":"#3C88D0"},{"name":"PSOE","data":[{"date":"2021-03-17","party":"PSOE","vote":24.0545705722034,"seats":35,"colors":"#DA3832","x":1615939200000,"y":24.0545705722034},{"date":"2021-03-18","party":"PSOE","vote":24.3023621122249,"seats":35,"colors":"#DA3832","x":1616025600000,"y":24.3023621122249}],"type":"line","marker":{"enabled":true},"color":"#DA3832"},{"name":"Unidas Podemos","data":[{"date":"2021-03-17","party":"Unidas Podemos","vote":10.9356461874849,"seats":16,"colors":"#623165","x":1615939200000,"y":10.9356461874849},{"date":"2021-03-18","party":"Unidas Podemos","vote":10.8732788677379,"seats":16,"colors":"#623165","x":1616025600000,"y":10.8732788677379}],"type":"line","marker":{"enabled":true},"color":"#623165"},{"name":"Vox","data":[{"date":"2021-03-17","party":"Vox","vote":13.0475335620939,"seats":19,"colors":"#75BE4C","x":1615939200000,"y":13.0475335620939},{"date":"2021-03-18","party":"Vox","vote":11.8176162077665,"seats":17,"colors":"#75BE4C","x":1616025600000,"y":11.8176162077665}],"type":"line","marker":{"enabled":true},"color":"#75BE4C"}],"xAxis":{"type":"datetime","title":{"text":""}},"tooltip":{"shared":true,"useHTML":true,"headerFormat":"<small>{point.key}<\/small><table>","pointFormat":"<tr><td style=\"color: {series.color}\">{series.name}: <\/td><td style=\"text-align: right\"><b>{point.y}<\/b><\/td><\/tr>","footerFormat":"<\/table>","valueDecimals":2,"formatter":"function(tooltip){\n          function isArray(obj) {\n          return Object.prototype.toString.call(obj) === '[object Array]';\n          }\n\n          function splat(obj) {\n          return isArray(obj) ? obj : [obj];\n          }\n\n          var items = this.points || splat(this), series = items[0].series, s;\n\n          // sort the values\n          items.sort(function(a, b){\n          return ((a.y < b.y) ? -1 : ((a.y > b.y) ? 1 : 0));\n          });\n          items.reverse();\n\n          return tooltip.defaultFormatter.call(this, tooltip);\n        }","crosshairs":true,"backgroundColor":"#FBFEFF","borderWidth":0},"legend":{"align":"right","layout":"proximate"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":["hc_opts.tooltip.formatter"],"jsHooks":[]}</script>
+<hr />
+<p>Contacto: Alberto López Ortega <em><a href="mailto:alberto.lopezortega@uzh.ch" class="email">alberto.lopezortega@uzh.ch</a></em> , <a href="https://twitter.com/bertous">bertous</a></p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

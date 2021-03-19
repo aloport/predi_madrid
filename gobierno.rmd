@@ -1,0 +1,75 @@
+---
+title: Predicción diaria sobre el gobierno resultante
+---
+
+¿Cómo de probable es que estos sean los gobiernos resultantes? [Actualizado: 4 de mayo de 2019]
+
+
+
+_________________
+
+
+
+```{r graph0, echo=FALSE, out.width = '40%'}
+highchart() %>%
+  hc_add_series(
+    data = government_tree,
+    type = "sunburst",
+    name = "Probabilidad",
+    # type=  "treemap",
+    allowDrillToNode = TRUE,
+    colors= c("transparent", "#0F86DF", "#FF6251", "#DDDF00"),
+    tooltip = list(
+      headerFormat = "<b>{point.key}</b><br>",
+      pointFormat = "{point.value}% probabilidad"
+    ),
+    levels = list(
+      list(
+        level = 1,
+        borderWidth = 0,
+        borderColor = "transparent",
+         colorByPoint = TRUE,
+        dataLabels = list(enabled = TRUE)
+      ),
+      list(
+        level = 2,
+        borderWidth = 0,
+        borderColor = "transparent",
+        colorByPoint = TRUE,
+        dataLabels = list(enabled = TRUE)
+      ),
+      list(
+        level = 3,
+        borderWidth = 0,
+        borderColor = "transparent",
+        colorVariation = list(key = "brightness", to = 0.50),
+        dataLabels = list(enabled = TRUE)
+      )
+    )
+  )
+
+
+```
+
+```{r graph1, echo=FALSE, out.width = '20%'}
+
+
+highchart() %>% 
+  hc_xAxis(categories = government_spread$date, tickInterval = 1) %>% 
+  hc_add_series(name = "PP y Vox", data = government_spread$`PP y Vox` , color = "#11D78D") %>% 
+  hc_add_series(name = "PP en mayoría", data = government_spread$`PP en mayoría`, color= "#0F86DF") %>% 
+  hc_add_series(name = "PP con apoyos externos", data = government_spread$`PP con apoyos externos`, color = "#10C7DF") %>% 
+  hc_add_series(name = "PSOE, UP y Más Madrid", data = government_spread$`PSOE, UP y Más Madrid`, color= "#874EFE") %>% 
+  hc_add_series(name = "PSOE, UP, Más Madrid y Cs", data = government_spread$`PSOE, UP, Más Madrid y Cs`, color= "#FF6251") %>% 
+  hc_add_series(name = "PSOE y Cs", data = government_spread$`PSOE y Cs`, color= "#FFAA00") %>% 
+  hc_add_series(name = "Repetición de elecciones", data = government_spread$`Repetición de elecciones`, color= "#444444")   %>% 
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FBFEFF",
+             shared = TRUE, borderWidth = 0, sort = TRUE,  table = TRUE)
+
+
+```
+
+_____
+
+Contacto: Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
+

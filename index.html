@@ -11,17 +11,27 @@
 
 
 
-<title>Nick’s Website</title>
+<title>index.utf8</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.17/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/dt-ext-fixedcolumns-1.10.20/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+<script src="site_libs/dt-ext-fixedcolumns-1.10.20/js/dataTables.fixedColumns.min.js"></script>
+<link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -112,33 +122,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 45px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .dropdown-submenu {
   position: relative;
@@ -277,15 +287,30 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Nicks Website</a>
+      <a class="navbar-brand" href="index.html">PREDI 4M</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Elecciones Madrid 4M
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="gobierno.html">Predicción de voto</a>
+    </li>
+    <li>
+      <a href="voto.html">Predicción de gobierno</a>
+    </li>
+  </ul>
 </li>
 <li>
-  <a href="about.html">About Me</a>
+  <a href="about.html">Funcionamiento</a>
+</li>
+<li>
+  <a href="participate.html">¿Quieres participar?</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -299,12 +324,27 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Nick’s Website</h1>
 
 </div>
 
 
-<p>Hello, World! tttttt</p>
+<hr />
+<p>Bienvenid@ a PREDI, la herramienta electoral basada en mercados de predicción que ofrece <em>predicciones diarias para las elecciones autonómicas de la C. Madrid 2021</em>.</p>
+<p>A continuación, los resultados actualizados [19 de marzo de 2021].</p>
+<hr />
+<ul>
+<li><strong><a href="https://aloport.github.io/predi/gobierno.html">Predicción sobre el gobierno resultante</a></strong></li>
+</ul>
+<div id="htmlwidget-08246ea9145c736c35b3" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-08246ea9145c736c35b3">{"x":{"filter":"none","extensions":["FixedColumns"],"data":[["PP y Vox","PSOE, UP y Más Madrid","PP con apoyos externos","PP en mayoría","PSOE, UP, Más Madrid y Cs","Repetición de elecciones"],[50.22,31.04,10,2.79,2.73,2.21],[-2.8,8.28,-3.25,0.44,0.39,-1.76]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Tipo de gobierno<\/th>\n      <th>Probabilidad<\/th>\n      <th>Tendencia<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":false,"fixedColumns":true,"scrollCollapse":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<ul>
+<li><strong><a href="https://aloport.github.io/predi/voto.html">Estimación de voto a partidos</a></strong></li>
+</ul>
+<div id="htmlwidget-05202b64e668dc9b475a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-05202b64e668dc9b475a">{"x":{"filter":"none","extensions":["FixedColumns"],"data":[["PP","PSOE","Vox","Unidas Podemos","Más Madrid","Cs"],[37.64,24.3,11.82,10.87,9.36,4.51],[0.47,0.25,-1.23,-0.06,0.72,-0.15],[55,35,17,16,13,0],[1,0,-2,0,1,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Partido<\/th>\n      <th>Voto<\/th>\n      <th>Tendencia (voto)<\/th>\n      <th>Escaños<\/th>\n      <th>Tendencia (escaños)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"r","scrollX":true,"fixedColumns":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<p><a href="https://aloport.github.io/predi/projects.html">Metodología</a> • <a href="https://aloport.github.io/predi/about.html">Sobre nuestro proyecto de investigación</a> • <a href="https://aloport.github.io/predi/participate.html">¿Quieres participar en el mercado de predicción?</a></p>
+<hr />
+<p>Contacto: Alberto López Ortega <em><a href="mailto:alberto.lopezortega@uzh.ch" class="email">alberto.lopezortega@uzh.ch</a></em> , <a href="https://twitter.com/bertous">bertous</a></p>
 
 
 

@@ -1,0 +1,28 @@
+---
+title: Predicción diaria de voto a partidos
+---
+
+Estos los resultados electorales más probables para los 5 grandes partidos [actualizados por última vez un día antes de las elecciones, el 27 de abril de 2019].
+
+_________________
+
+
+```{r pressure, echo=FALSE, out.width = '20%'}
+
+highchart() %>% 
+  hc_xAxis(categories = intrapolation_reduce$datetime2, tickInterval = 1) %>% 
+  hc_add_series(name = "PSOE", data = intrapolation_reduce$psoe, color = "#E9202C") %>% 
+  hc_add_series(name = "PP", data = intrapolation_reduce$pp, color= "#0387D5") %>% 
+  hc_add_series(name = "Ciudadanos", data = intrapolation_reduce$cs, color = "#FA5000") %>% 
+  hc_add_series(name = "Unidas Podemos", data = intrapolation_reduce$up, color= "#672F6C") %>% 
+  hc_add_series(name = "VOX", data = intrapolation_reduce$vox, color= "#32CD32") %>% 
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FBFEFF",
+             shared = TRUE, borderWidth = 0, sort = TRUE,  table = TRUE)
+
+```
+
+_____
+
+Contacto: Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
+
+

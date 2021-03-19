@@ -4,5 +4,10 @@
 #working on at the time. 
 setwd("/Users/ortega/Dropbox/website/predi_madrid/predi_madrid")
 
+
+
 #render your sweet site. 
 rmarkdown::render_site()
+
+
+

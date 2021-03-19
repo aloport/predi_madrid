@@ -1,9 +1,20 @@
-name: "nicks-website"
+name: "albertos-website"
 output_dir: "."
 navbar:
-  title: "Nicks Website"
+  title: "PREDI 4M"
+  href: index.html
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About Me"
-      href: about.html
+  - text: "Elecciones Madrid 4M"
+    menu:
+      - text: "Predicción de voto"
+        href: gobierno.html      
+      - text: "Predicción de gobierno"
+        href: voto.html
+  - text: "Funcionamiento"     
+    href: about.html
+  - text: "¿Quieres participar?"
+    href: participate.html
+output:
+  rmarkdown::html_document:
+    theme: yeti
+    
