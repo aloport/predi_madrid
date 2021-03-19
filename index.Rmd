@@ -8,45 +8,6 @@ A continuación, los resultados actualizados [19 de marzo de 2021].
 - __[Predicción sobre el gobierno resultante](https://aloport.github.io/predi_madrid/gobierno.html)__
 
 ```{r holio1, echo = FALSE, fig.align='center'}
-hchart(
-  vote_donut, "pie", hcaes(name = party, y = vote, color= colors),
-  name = "Escaños",
-  innerSize = "60%",
-  startAngle = -90, endAngle = 90,
-  dataLabels = list(format = "{point.name}, {point.vote} <br> ({point.seats})")
-) %>% 
-  # con la siguiente opción desactivamos los 'dataLabels' para que no 
-  # exista infomración redundante
-  hc_plotOptions(
-    series = list(dataLabels = list(enabled = FALSE))
-  ) %>% 
-  hc_tooltip(
-    useHTML = TRUE,
-    style = list(fontSize = "20px"),
-    headerFormat = "",
-    pointFormat = "<div style='text-align: center;'> <b>{point.name}</b><br>{point.seats} escaños<br>{point.vote}% votos</div>",
-    positioner = JS(
-      "function () {
-      
-        /* one of the most important parts! */
-        xp =  this.chart.chartWidth/2 - this.label.width/2
-        yp =  this.chart.chartHeight/2 - this.label.height/1
-      
-        return { x: xp, y: yp };
-      
-      }"),
-    shadow = FALSE,
-    borderWidth = 0,
-    backgroundColor = "transparent",
-    hideDelay = 1000
-  )
-
-```
-
-- __[Estimación de voto a partidos](https://aloport.github.io/predi_madrid/voto.html)__
-
-```{r holio2, echo = FALSE, fig.align='center'}
-
 highchart() %>%
   hc_add_series(
     data = government_tree,
@@ -84,6 +45,45 @@ highchart() %>%
     )
   )
 
+
+```
+
+- __[Estimación de voto a partidos](https://aloport.github.io/predi_madrid/voto.html)__
+
+```{r holio2, echo = FALSE, fig.align='center'}
+
+hchart(
+  vote_donut, "pie", hcaes(name = party, y = vote, color= colors),
+  name = "Escaños",
+  innerSize = "60%",
+  startAngle = -90, endAngle = 90,
+  dataLabels = list(format = "{point.name}, {point.vote} <br> ({point.seats})")
+) %>% 
+  # con la siguiente opción desactivamos los 'dataLabels' para que no 
+  # exista infomración redundante
+  hc_plotOptions(
+    series = list(dataLabels = list(enabled = FALSE))
+  ) %>% 
+  hc_tooltip(
+    useHTML = TRUE,
+    style = list(fontSize = "20px"),
+    headerFormat = "",
+    pointFormat = "<div style='text-align: center;'> <b>{point.name}</b><br>{point.seats} escaños<br>{point.vote}% votos</div>",
+    positioner = JS(
+      "function () {
+      
+        /* one of the most important parts! */
+        xp =  this.chart.chartWidth/2 - this.label.width/2
+        yp =  this.chart.chartHeight/2 - this.label.height/1
+      
+        return { x: xp, y: yp };
+      
+      }"),
+    shadow = FALSE,
+    borderWidth = 0,
+    backgroundColor = "transparent",
+    hideDelay = 1000
+  )
 
 ```
 
