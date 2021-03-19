@@ -2,9 +2,9 @@ name: "albertos-website"
 output_dir: "."
 navbar:
   title: "PREDI 4M"
-  href: index.html
   left:
-
+  - text: "Inicio"
+    href: index.html
   - text: "Predicción de voto"
     href: gobierno.html      
   - text: "Predicción de gobierno"
