@@ -19,3 +19,4 @@ navbar:
       href: participate.html
 output:
   rmarkdown::html_document:
+    theme: flatly
