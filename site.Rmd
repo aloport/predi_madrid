@@ -1,0 +1,215 @@
+A continuación, los resultados actualizados [19 de marzo de 2021].
+
+-------------------
+
+## Inicio
+
+- __[Predicción sobre el gobierno resultante](https://aloport.github.io/predi_madrid/gobierno.html)__
+
+```{r holio1, echo = FALSE, fig.align='center', out.width = '20%'}
+highchart() %>%
+  hc_add_series(
+    data = government_tree,
+    type = "sunburst",
+    name = "Probabilidad",
+    # type=  "treemap",
+    allowDrillToNode = TRUE,
+    colors= c("transparent", "#0F86DF", "#FF6251", "#DDDF00"),
+    tooltip = list(
+      headerFormat = "<b>{point.key}</b><br>",
+      pointFormat = "{point.value}% probabilidad"
+    ),
+    levels = list(
+      list(
+        level = 1,
+        borderWidth = 0,
+        borderColor = "transparent",
+         colorByPoint = TRUE,
+        dataLabels = list(enabled = TRUE)
+      ),
+      list(
+        level = 2,
+        borderWidth = 0,
+        borderColor = "transparent",
+        colorByPoint = TRUE,
+        dataLabels = list(enabled = TRUE)
+      ),
+      list(
+        level = 3,
+        borderWidth = 0,
+        borderColor = "transparent",
+        colorVariation = list(key = "brightness", to = 0.50),
+        dataLabels = list(enabled = TRUE)
+      )
+    )
+  )
+
+
+```
+
+-------------------
+
+## Predicción diaria sobre el gobierno resultante
+
+
+```{r graph2, echo=FALSE, out.width = '20%'}
+
+highchart() %>% 
+  hc_xAxis(categories = government_spread$date, tickInterval = 1) %>% 
+  hc_add_series(name = "PP y Vox", data = government_spread$`PP y Vox` , color = "#11D78D") %>% 
+  hc_add_series(name = "PP en mayoría", data = government_spread$`PP en mayoría`, color= "#0F86DF") %>% 
+  hc_add_series(name = "PP con apoyos externos", data = government_spread$`PP con apoyos externos`, color = "#10C7DF") %>% 
+  hc_add_series(name = "PSOE, UP y Más Madrid", data = government_spread$`PSOE, UP y Más Madrid`, color= "#874EFE") %>% 
+  hc_add_series(name = "PSOE, UP, Más Madrid y Cs", data = government_spread$`PSOE, UP, Más Madrid y Cs`, color= "#FF6251") %>% 
+  hc_add_series(name = "PSOE y Cs", data = government_spread$`PSOE y Cs`, color= "#FFAA00") %>% 
+  hc_add_series(name = "Repetición de elecciones", data = government_spread$`Repetición de elecciones`, color= "#444444")   %>% 
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FBFEFF",
+             shared = TRUE, borderWidth = 0, sort = TRUE,  table = TRUE)
+
+
+```
+
+-------------------
+
+## Predicción diaria de voto y escaños a partidos
+
+
+```{r holio3, echo = FALSE, fig.align='center', cache = TRUE}
+
+hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #good
+        ,"#82ECAB"
+        ,"#3C88D0" #good
+        , "#DA3832" #good
+        ,  "#623165"
+        , "#75BE4C" )) %>% 
+  hc_tooltip(
+    pointFormat = "<span  style='color: {series.color}'> {series.name} <b>{point.y}</b><br/>(Escaños:{point.seats})</span>",
+    shadow = FALSE,
+    backgroundColor = "transparent",
+    borderColor = "transparent",
+    borderWidth = 0
+  ) %>% 
+  hc_xAxis(title = list(text = " ")) 
+```
+
+
+-------------------
+
+## Tendencia
+
+```{r holio03, echo=FALSE, out.width = '20%'}
+myColors_gen <- c("#0000BA", "#9A0000", "#A9A9A9", "#C57420", "#FF3827", "#FF9300", "#04AAFF")
+ 
+library(DT)
+
+datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobierno', 'Probabilidad', 'Tendencia'), extensions = 'FixedColumns',
+  options = list( dom= "t",
+    scrollX = FALSE,
+    fixedColumns = TRUE,
+  scrollCollapse = TRUE, pageLength = 10
+  )) %>%
+  formatStyle(
+    'diff_prob',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  ) %>%
+  formatStyle('party', fontWeight = 'bold')
+```
+
+
+```{r holio02, echo=FALSE, out.width = '20%'}
+datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia (voto)', 'Escaños', 'Tendencia (escaños)'), extensions = 'FixedColumns',
+  options = list(
+    dom = 'r',
+    scrollX = TRUE,
+    fixedColumns = TRUE, pageLength = 10
+  )) %>%
+  formatStyle(
+    'diff_vote',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  )  %>%
+  formatStyle(
+    'diff_seats',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  ) %>%
+  formatStyle('party', fontWeight = 'bold')
+```
+
+-------------------
+
+## ¿Cómo funciona el mercado de predicción?
+
+
+El mecanismo del mercado de predicción se asemeja mucho al de un mercado bursátil. Sin embargo, en lugar de comerciar con productos financieros, [los participantes](https://aloport.github.io/predi/participate.html) en el mercado comercian con acciones sobre eventos políticos futuros. En nuestro mercado para las elecciones autonómicas de la C. Madrid 2021, por ejemplo, los participantes tienen que predecir dos tipos de eventos. 
+
+- _Gobierno resultante._ El primer evento que tienen que predecir los participantes es cuál va ser el gobierno resultante tras las elecciones, en el que cada uno de los escenarios más probables es un contrato en el mercado. 
+
+En este submercado los participantes compran y venden, por ejemplo, un contrato llamado “un gobierno de PP y Vox”. En cuanto el mercado se pone en marcha, el precio variante de este contrato refleja la probabilidad de que tenga lugar el evento descrito en él. Los participantes pueden comprar acciones si piensan que la probabilidad de que este evento tenga lugar es mayor que la sugerida por su precio y vender acciones si piensan que la probabilidad de dicho evento es menor. Así, conforme el precio de cada contrato refleja la probabilidad de que se consituya cada tipo de gobierno resultante.
+
+
+- _Estimación de voto._ El segundo tipo de evento es el resultado electoral que va a obtener cada uno de los principales partidos en porcentaje de votos. Para ello, tenemos un submercado para cada uno de los cinco grandes partidos (PSOE, PP, Vox, Unidas Podemos, Más Madrid y Cs). En cada uno de estos mercados, los participantes tienen que asignar probabilidades a los posibles resultados electorales de cada partido.
+
+A modo de ejemplo, observa la siguiente tabla. La primera columna se corresponde con el submercado del PP en el que los participantes tienen que asignar probabilidades a estos márgenes de voto. La segunda columna presenta probabilidades ficticias asignadas por los participantes.
+
+```{r holi1, echo = FALSE, fig.align='center'}
+
+datatable(Ejemplo, extensions = 'FixedColumns',
+  options = list( dom= "t",
+    scrollX = FALSE,
+    fixedColumns = TRUE,
+  scrollCollapse = TRUE, pageLength = 10
+  )) 
+
+```
+
+Posteriormente, calculamos las probabilidades acumuladas de estas estimaciones e interpolamos cuál es la estimación que se correspondería con el 50% de probabilidades acumuladas. Es decir, estimamos el resultado más probable para este partido.
+
+```{r holi2, echo = FALSE, fig.align='center'}
+
+datatable(Ejemplo_2, extensions = 'FixedColumns',
+          options = list( dom= "r",
+    scrollX = FALSE,
+    fixedColumns = TRUE,
+  scrollCollapse = TRUE,  pageLength = 10
+          )) %>%
+  formatStyle(
+    0,
+    target = "row",
+    fontWeight = styleEqual(4, "bold")
+  ) 
+
+```
+
+-------------------
+
+## Sobre nosotros
+
+El mercado de predicción sobre las elecciones para la C. Madrid 2021, así como los pasados mercados para las elecciones generales y autonomicas de otros años, se enmarca un proyecto de investigación en el que __[Oliver Strijbis](https://www.ipz.uzh.ch/de/institut/mitarbeitende/staff/strijbis.html) y [Alberto López Ortega](https://www.aloport.github.io)__ estudiamos cuál es __el efecto de las expectativas y los eventos de campaña sobre los resultados electorales__. Niuestro paper más reciente, por ejemplo estudia el efecto arrastre o bandwagoning (fenómeno psicológico por el cual los ciudadanos apoyan al que simplemente tiene apariencia de ir ganando) y el llamado ‘voto estratégico coalicional’ (que supone votar al partido que asegura la coalición post-electoral preferida) en las pasadas elecciones catalanas. 
+
+_________________
+
+```{r pressure, echo=FALSE, out.width = '20%'}
+knitr::include_graphics("uzh.png")
+```
+
+____________
+
+-------------------
+
+## ¿Quieres participar?
+
+
+¿Te interesa la política? El periodo para participar en el mercado de predicción sobre las elecciones en España 2021, está abierto en http://thepredictionmarket.com. Este mercado de predicción se encuadra en un proyecto de investigación de la Universidad de Zúrich.
+
+Como participante en el mercado de predicción puedes demostrar tus conocimientos acerca de la política española y ser recompensado dependiendo de tu rendimiento en el juego. Además, podrás optar de manera opcional a un certificado de participación en este proyecto de investigación incluyendo información acerca de tu rendimiento en el mismo.
+
+**Registro**
+
+Puedes registrarte en el mercado de predicción creando una cuenta en http://thepredictionmarket.com. Una vez creada tu cuenta te asignaremos un mercado y enviaremos detalladamente las instrucciones del juego. __Para poder identificarte, debes utilizar tu cuenta de e-mail oficial de tu universidad__. Este proceso no es automático y podría tardar unos días.
+
+**Remuneración**
+
+Para poder comprar y vender en el mercado de predicción te entregaremos 10 euros. Con este dinero deberás comprar y vender acciones sobre eventos políticos. Tu ganancia al final del juego dependerá de tu buen rendimiento. Por ejemplo, en el mercado de las pasadas elecciones catalanas los participantes obtuvieron de media 20,83€; y las ganancias oscilaron desde 0 hasta los 348,53€ que recibió el ganador. Dicha compensación será pagada después del cierre de mercado, cuando se haya elegido formalmente un nuevo gobierno en cada caso. La compensación se transferirá a través de una transferencia bancaria, lo cual solamente será posible a través de cuentas bancarias europeas, registradas con el nombre del participante. 
+
+_________________
+
+Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)

@@ -8,22 +8,19 @@ output:
     toc_float: yes
     toc_depth: 2
     df_print: paged
-    theme: flatly
+    theme: readable
     highlight: tango
 navbar:
   title: "PREDI 4M"
   left:
   - text: "Inicio"
-    href: /
-  - text: "Predicción de gobierno"
-    href: gobierno.html      
-  - text: "Predicción de voto"
-    href: voto.html
-  - text: "Tendencias"
-    href: tendencias.html
-  - text: "Funcionamiento"     
-    href: projects.html
-  - text: "Sobre nosotros"     
-    href: about.html
-  - text: "¿Quieres participar?"
-    href: participate.html
+    href: index.html
+  right:    
+  - text: "Más"
+    menu:
+    - text: "Funcionamiento"     
+      href: projects.html
+    - text: "Sobre nosotros"     
+      href: about.html
+    - text: "¿Quieres participar?"
+      href: participate.html

@@ -1,11 +1,12 @@
 ____
-A continuación, los resultados actualizados [19 de marzo de 2021].
+Bienvenid@ a **PREDI**, la herramienta electoral basada en mercados de predicción que ofrece predicciones diarias para las elecciones de la C. Madrid 2021
 
--------------------
+A continuación, los resultados actualizados [20 de marzo de 2021].
 
-- __[Predicción sobre el gobierno resultante](https://aloport.github.io/predi_madrid/gobierno.html)__
-
-```{r holio1, echo = FALSE, fig.align='center', out.width = '20%'}
+<div class = "row">
+<div class = "col-md-6">
+**Predicción sobre el gobierno resultante**
+```{r cars,  warning = FALSE, echo = FALSE, dev=c('svg')}
 highchart() %>%
   hc_add_series(
     data = government_tree,
@@ -42,26 +43,134 @@ highchart() %>%
       )
     )
   )
-
-
 ```
-
-- __[Estimación de voto y escaños a partidos](https://aloport.github.io/predi_madrid/voto.html)__
-
-```{r holio2, echo = FALSE, fig.align='center'}
-
+</div>
+<div class = "col-md-6">
+**Estimación de voto y escaños a partidos**
+```{r pressure, warning = FALSE, echo=FALSE, dev=c('svg')}
 hchart(
   vote_donut, "pie", hcaes(name = party, y = vote, color= colors),
   name = "Escaños",
   innerSize = "60%",
   startAngle = -90, endAngle = 90,
   dataLabels = list(format = "{point.name}, {point.vote} <br> ({point.seats})")
-) 
+) %>% 
+  # con la siguiente opción desactivamos los 'dataLabels' para que no 
+  # exista infomración redundante
+  hc_plotOptions(
+    series = list(dataLabels = list(enabled = FALSE))
+  ) %>% 
+  hc_tooltip(
+    useHTML = TRUE,
+    style = list(fontSize = "20px"),
+    headerFormat = "",
+    pointFormat = "<div style='text-align: center;'> <b>{point.name}</b><br>{point.seats} escaños<br>{point.vote}% votos</div>",
+    positioner = JS(
+      "function () {
+      
+        /* one of the most important parts! */
+        xp =  this.chart.chartWidth/2 - this.label.width/2
+        yp =  this.chart.chartHeight/2 - this.label.height/1
+      
+        return { x: xp, y: yp };
+      
+      }"),
+    shadow = FALSE,
+    borderWidth = 0,
+    backgroundColor = "transparent",
+    hideDelay = 1000
+  )
+```
+</div>
+</div>
 
+
+-------------------
+
+## Tendencia acumulada
+
+<div class = "row">
+<div class = "col-md-6">
+**Predicción diaria sobre el gobierno resultante**
+```{r cars2,  warning = FALSE, echo = FALSE, dev=c('svg')}
+highchart() %>% 
+  hc_xAxis(categories = government_spread$date, tickInterval = 1) %>% 
+  hc_add_series(name = "PP y Vox", data = government_spread$`PP y Vox` , color = "#11D78D") %>% 
+  hc_add_series(name = "PP en mayoría", data = government_spread$`PP en mayoría`, color= "#0F86DF") %>% 
+  hc_add_series(name = "PP con apoyos externos", data = government_spread$`PP con apoyos externos`, color = "#10C7DF") %>% 
+  hc_add_series(name = "PSOE, UP y Más Madrid", data = government_spread$`PSOE, UP y Más Madrid`, color= "#874EFE") %>% 
+  hc_add_series(name = "PSOE, UP, Más Madrid y Cs", data = government_spread$`PSOE, UP, Más Madrid y Cs`, color= "#FF6251") %>% 
+  hc_add_series(name = "PSOE y Cs", data = government_spread$`PSOE y Cs`, color= "#FFAA00") %>% 
+  hc_add_series(name = "Repetición de elecciones", data = government_spread$`Repetición de elecciones`, color= "#444444")   %>% 
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FBFEFF",
+             shared = TRUE, borderWidth = 0, sort = TRUE,  table = TRUE)
+
+```
+</div>
+<div class = "col-md-6">
+ **Predicción diaria de voto y escaños a partidos**
+```{r pressure2, warning = FALSE, echo=FALSE, dev=c('svg')}
+
+hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #good
+        ,"#82ECAB"
+        ,"#3C88D0" #good
+        , "#DA3832" #good
+        ,  "#623165"
+        , "#75BE4C" )) %>% 
+  hc_tooltip(
+    pointFormat = "<span  style='color: {series.color}'> {series.name} <b>{point.y}</b><br/>(Escaños:{point.seats})</span>",
+    shadow = FALSE,
+    backgroundColor = "transparent",
+    borderColor = "transparent",
+    borderWidth = 0
+  ) %>% 
+  hc_xAxis(title = list(text = " ")) %>% 
+  hc_yAxis(title = list(text = "Porcentaje de voto% (escaños")) 
+```
+</div>
+</div>
+
+-------------------
+
+## Tablas de progreso diario
+
+```{r holio03, echo=FALSE, out.width = '20%'}
+myColors_gen <- c("#0000BA", "#9A0000", "#A9A9A9", "#C57420", "#FF3827", "#FF9300", "#04AAFF")
+ 
+library(DT)
+
+datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobierno', 'Probabilidad', 'Tendencia'), extensions = 'FixedColumns',
+  options = list( dom= "t",
+    scrollX = FALSE,
+    fixedColumns = TRUE,
+  scrollCollapse = TRUE, pageLength = 10
+  )) %>%
+  formatStyle(
+    'diff_prob',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  ) %>%
+  formatStyle('party', fontWeight = 'bold')
 ```
 
 
-[Metodología](https://aloport.github.io/predi_madrid/projects.html) • [Sobre nuestro proyecto de investigación](https://aloport.github.io/predi_madrid/about.html) • [¿Quieres participar en el mercado de predicción?](https://aloport.github.io/predi_madrid/participate.html)
+```{r holio02, echo=FALSE, out.width = '20%'}
+datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia (voto)', 'Escaños', 'Tendencia (escaños)'), extensions = 'FixedColumns',
+  options = list(
+    dom = 'r',
+    scrollX = TRUE,
+    fixedColumns = TRUE, pageLength = 10
+  )) %>%
+  formatStyle(
+    'diff_vote',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  )  %>%
+  formatStyle(
+    'diff_seats',
+    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
+  ) %>%
+  formatStyle('party', fontWeight = 'bold')
+```
+
 
 _____
 

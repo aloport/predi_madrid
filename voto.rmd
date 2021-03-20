@@ -21,7 +21,8 @@ hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #
     borderColor = "transparent",
     borderWidth = 0
   ) %>% 
-  hc_xAxis(title = list(text = " ")) 
+  hc_xAxis(title = list(text = " ")) %>% 
+  hc_yAxis(title = list(text = "Porcentaje de voto% (escaños")) 
 ```
 
 _____

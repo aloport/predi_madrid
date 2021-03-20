@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -110,33 +110,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 66px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 71px;
+  margin-top: -71px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 71px;
+  margin-top: -71px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 71px;
+  margin-top: -71px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 71px;
+  margin-top: -71px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 71px;
+  margin-top: -71px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 71px;
+  margin-top: -71px;
 }
 .dropdown-submenu {
   position: relative;
@@ -353,29 +353,28 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="/">Inicio</a>
-</li>
-<li>
-  <a href="gobierno.html">Predicción de gobierno</a>
-</li>
-<li>
-  <a href="voto.html">Predicción de voto</a>
-</li>
-<li>
-  <a href="tendencias.html">Tendencias</a>
-</li>
-<li>
-  <a href="projects.html">Funcionamiento</a>
-</li>
-<li>
-  <a href="about.html">Sobre nosotros</a>
-</li>
-<li>
-  <a href="participate.html">¿Quieres participar?</a>
+  <a href="index.html">Inicio</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Más
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="projects.html">Funcionamiento</a>
+    </li>
+    <li>
+      <a href="about.html">Sobre nosotros</a>
+    </li>
+    <li>
+      <a href="participate.html">¿Quieres participar?</a>
+    </li>
+  </ul>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -396,13 +395,13 @@ div.tocify {
 <ul>
 <li><strong><a href="https://aloport.github.io/predi/gobierno.html">Predicción sobre el gobierno resultante</a></strong></li>
 </ul>
-<div id="htmlwidget-7510e68c8a5f621d6cd9" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7510e68c8a5f621d6cd9">{"x":{"filter":"none","extensions":["FixedColumns"],"data":[["Gobierno de coalición de izquierdas","Gobierno de coalición de centro","Gobierno monocolor de izquierdas","Repetición de elecciones"],[83.61,4.37,4.07,3.82],[16.36,-1.4,-8.96,-4.67]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Tipo de gobierno<\/th>\n      <th>Probabilidad<\/th>\n      <th>Tendencia<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":false,"fixedColumns":true,"scrollCollapse":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<div id="htmlwidget-e262114a7fbda5a5571a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e262114a7fbda5a5571a">{"x":{"filter":"none","extensions":["FixedColumns"],"data":[["Gobierno de coalición de izquierdas","Gobierno de coalición de centro","Gobierno monocolor de izquierdas","Repetición de elecciones"],[83.61,4.37,4.07,3.82],[16.36,-1.4,-8.96,-4.67]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Tipo de gobierno<\/th>\n      <th>Probabilidad<\/th>\n      <th>Tendencia<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":false,"fixedColumns":true,"scrollCollapse":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 <ul>
 <li><strong><a href="https://aloport.github.io/predi/voto.html">Estimación de voto a partidos</a></strong></li>
 </ul>
-<div id="htmlwidget-0d057d38feca654e9cbc" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0d057d38feca654e9cbc">{"x":{"filter":"none","extensions":["FixedColumns"],"data":[["PSOE","PP","Ciudadanos","Unidas Podemos","VOX"],[27.76,19.77,14.77,13.9,13.35],[-0.47,-0.11,-0.16,-0.22,-0.15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Partido<\/th>\n      <th>Voto<\/th>\n      <th>Tendencia<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"r","scrollX":true,"fixedColumns":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<div id="htmlwidget-143e08326187ca065218" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-143e08326187ca065218">{"x":{"filter":"none","extensions":["FixedColumns"],"data":[["PSOE","PP","Ciudadanos","Unidas Podemos","VOX"],[27.76,19.77,14.77,13.9,13.35],[-0.47,-0.11,-0.16,-0.22,-0.15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Partido<\/th>\n      <th>Voto<\/th>\n      <th>Tendencia<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"r","scrollX":true,"fixedColumns":true,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':isNaN(parseFloat(value)) ? '' : value <= -0.001 ? \"red\" : value <= 0.001 ? \"black\" : \"green\"});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 <p><a href="https://aloport.github.io/predi/projects.html">Metodología</a> • <a href="https://aloport.github.io/predi/about.html">Sobre nuestro proyecto de investigación</a> • <a href="https://aloport.github.io/predi/participate.html">¿Quieres participar en el mercado de predicción?</a></p>
 <hr />
 <p>Contacto: Alberto López Ortega <em><a href="mailto:alberto.lopezortega@uzh.ch" class="email">alberto.lopezortega@uzh.ch</a></em> , <a href="https://twitter.com/bertous">bertous</a></p>
