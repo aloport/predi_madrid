@@ -1,6 +1,5 @@
 name: "albertos-website"
 author: "bertous"
-title: "PREDI 4M"
 output_dir: "."
 exclude: ["*.xls", "*.csv","*.R"]
 output:
@@ -12,6 +11,7 @@ output:
     theme: readable
     highlight: tango
 navbar:
+  title: "PREDI 4M"
   left:
   - text: "Inicio"
     href: index.html
