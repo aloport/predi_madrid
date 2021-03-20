@@ -9,14 +9,11 @@ navbar:
       href: gobierno.html      
     - text: "Predicción de voto"
       href: voto.html
+    - text: "Tendencias"
+      href: tendencias.html
     - text: "Funcionamiento"     
       href: about.html
     - text: "¿Quieres participar?"
       href: participate.html
 output:
   rmarkdown::html_document:
-     css: style.css
-
----
-output: rmdformats::material
----

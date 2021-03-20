@@ -1,45 +1,30 @@
 ---
-title: Predicción diaria de voto a partidos
+title: Predicción diaria de voto y escaños a partidos
 ---
 
-Estos los resultados electorales más probables para los 5 grandes partidos [actualizados por última vez un día antes de las elecciones, el 19 de marzo de 2021].
+Estos los resultados electorales más probables para los 6 grandes partidos.
 
 _________________
 
+```{r holio3, echo = FALSE, fig.align='center', cache = TRUE}
 
-```{r graph04, echo=FALSE, out.width = '20%'}
-datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia (voto)', 'Escaños', 'Tendencia (escaños)'), extensions = 'FixedColumns',
-  options = list(
-    dom = 'r',
-    scrollX = TRUE,
-    fixedColumns = TRUE, pageLength = 10
-  )) %>%
-  formatStyle(
-    'diff_vote',
-    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
-  )  %>%
-  formatStyle(
-    'diff_seats',
-    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
-  ) %>%
-  formatStyle('party', fontWeight = 'bold')
-
-
-highchart() %>% 
-  hc_xAxis(categories = vote_lines$date, tickInterval = 1) %>% 
-  hc_add_series(name = "PSOE", data = vote_lines$PSOE, color = "#E9202C") %>% 
-  hc_add_series(name = "PP", data = vote_lines$PP, color= "#0387D5") %>% 
-  hc_add_series(name = "Ciudadanos", data = vote_lines$Cs, color = "#FA5000") %>% 
-  hc_add_series(name = "Unidas Podemos", data = vote_lines$`Unidas Podemos`, color= "#672F6C") %>% 
-  hc_add_series(name = "VOX", data = vote_lines$Vox, color= "#32CD32") %>% 
-  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FBFEFF",
-             shared = TRUE, borderWidth = 0, sort = TRUE,  table = TRUE)
-
-
+hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #good
+        ,"#82ECAB"
+        ,"#3C88D0" #good
+        , "#DA3832" #good
+        ,  "#623165"
+        , "#75BE4C" )) %>% 
+  hc_tooltip(
+    pointFormat = "<span  style='color: {series.color}'> {series.name} <b>{point.y}</b><br/>(Escaños:{point.seats})</span>",
+    shadow = FALSE,
+    backgroundColor = "transparent",
+    borderColor = "transparent",
+    borderWidth = 0
+  )
 ```
 
 _____
 
-Contacto: Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
+Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
 
 

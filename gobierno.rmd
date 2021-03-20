@@ -2,31 +2,11 @@
 title: Predicción diaria sobre el gobierno resultante
 ---
 
-¿Cómo de probable es que estos sean los gobiernos resultantes? [Actualizado: 19 de marzo de 2021]
-
-
+¿Cómo de probable es que estos sean los gobiernos resultantes? 
 
 _________________
 
-
-
-```{r graph1, echo=FALSE, out.width = '20%'}
-myColors_gen <- c("#0000BA", "#9A0000", "#A9A9A9", "#C57420", "#FF3827", "#FF9300", "#04AAFF")
- 
-library(DT)
-
-datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobierno', 'Probabilidad', 'Tendencia'), extensions = 'FixedColumns',
-  options = list( dom= "t",
-    scrollX = FALSE,
-    fixedColumns = TRUE,
-  scrollCollapse = TRUE, pageLength = 10
-  )) %>%
-  formatStyle(
-    'diff_prob',
-    color = styleInterval(c(-0.001, 0.001), c('red', 'black', 'green'))
-  ) %>%
-  formatStyle('party', fontWeight = 'bold')
-
+```{r graph2, echo=FALSE, out.width = '20%'}
 
 highchart() %>% 
   hc_xAxis(categories = government_spread$date, tickInterval = 1) %>% 
@@ -45,5 +25,5 @@ highchart() %>%
 
 _____
 
-Contacto: Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
+Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
 

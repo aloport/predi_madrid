@@ -1,13 +1,11 @@
 ____
-Bienvenid@ a PREDI, la herramienta electoral basada en mercados de predicción que ofrece *predicciones diarias para las elecciones autonómicas de la C. Madrid 2021*.
-
 A continuación, los resultados actualizados [19 de marzo de 2021].
- 
+
 -------------------
 
 - __[Predicción sobre el gobierno resultante](https://aloport.github.io/predi_madrid/gobierno.html)__
 
-```{r holio1, echo = FALSE, fig.align='center'}
+```{r holio1, echo = FALSE, fig.align='center', out.width = '20%'}
 highchart() %>%
   hc_add_series(
     data = government_tree,
@@ -48,7 +46,7 @@ highchart() %>%
 
 ```
 
-- __[Estimación de voto a partidos](https://aloport.github.io/predi_madrid/voto.html)__
+- __[Estimación de voto y escaños a partidos](https://aloport.github.io/predi_madrid/voto.html)__
 
 ```{r holio2, echo = FALSE, fig.align='center'}
 
@@ -67,4 +65,4 @@ hchart(
 
 _____
 
-Contacto: Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
+Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
