@@ -1,5 +1,5 @@
 ____
-Bienvenid@ a **PREDI**, la herramienta electoral basada en mercados de predicción que ofrece predicciones diarias para las elecciones de la C. Madrid 2021
+Bienvenid@ a **PREDI**, la herramienta electoral basada en mercados de predicción que ofrece predicciones diarias para las **elecciones de la C. Madrid 2021**.
 
 A continuación, los resultados actualizados [20 de marzo de 2021].
 
