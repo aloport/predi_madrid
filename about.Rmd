@@ -3,7 +3,7 @@ title: "Sobre nosotros"
 ---
 
 <div class = "row">
-<div class = "col-md-10">
+<div class = "col-md-8">
 El mercado de predicción sobre las elecciones para la C. Madrid 2021, así como los pasados mercados para las elecciones generales y autonomicas de otros años, se enmarca un proyecto de investigación en el que __[Oliver Strijbis](https://www.ipz.uzh.ch/de/institut/mitarbeitende/staff/strijbis.html) y [Alberto López Ortega](https://www.aloport.github.io)__ estudiamos cuál es __el efecto de las expectativas y los eventos de campaña sobre los resultados electorales__. Nuestro paper más reciente, por ejemplo estudia el efecto arrastre o bandwagoning (fenómeno psicológico por el cual los ciudadanos apoyan al que simplemente tiene apariencia de ir ganando) y el llamado ‘voto estratégico coalicional’ (que supone votar al partido que asegura la coalición post-electoral preferida) en las pasadas elecciones catalanas. 
 
 A partir de las señales que emite el mercado de predicción, __Alberto__ genera estimaciones de voto, escaños y gobierno resultante que publica en esta web.
