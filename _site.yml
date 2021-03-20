@@ -1,9 +1,20 @@
 name: "albertos-website"
-output_dir: "."
+author: "bertous"
+output_dir: "docs"
+exclude: ["*.xls", "*.csv","*.R"]
+output:
+  html_document:
+    toc: true
+    toc_float: yes
+    toc_depth: 2
+    df_print: paged
+    theme: flatly
+    highlight: tango
 navbar:
   title: "PREDI 4M"
-  href: index.html
   left:
+  - text: "Inicio"
+    href: /
   - text: "Predicción de gobierno"
     href: gobierno.html      
   - text: "Predicción de voto"
@@ -16,8 +27,3 @@ navbar:
     href: about.html
   - text: "¿Quieres participar?"
     href: participate.html
-output:
-  rmarkdown::html_document:
-    theme: flatly
-    
-
