@@ -20,7 +20,10 @@ hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #
     backgroundColor = "transparent",
     borderColor = "transparent",
     borderWidth = 0
-  )
+  ) %>% 
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FBFEFF",
+             shared = TRUE, borderWidth = 0, sort = TRUE,  table = TRUE) %>% 
+  hc_xAxis(title = list(text = " "))
 ```
 
 _____
