@@ -3,9 +3,9 @@ Bienvenid@ a **PREDI**, la herramienta electoral basada en mercados de predicci�
 
 A continuación, los resultados actualizados [20 de marzo de 2021].
 
-<div class = "row">
-<div class = "col-md-6">
-**Predicción sobre el gobierno resultante**
+## Predicciones de hoy {.tabset}
+
+### Gobierno resultante
 ```{r cars,  warning = FALSE, echo = FALSE, dev=c('svg')}
 highchart() %>%
   hc_add_series(
@@ -44,9 +44,8 @@ highchart() %>%
     )
   )
 ```
-</div>
-<div class = "col-md-6">
-**Estimación de voto y escaños a partidos**
+
+### Voto y escaños a partidos
 ```{r pressure, warning = FALSE, echo=FALSE, dev=c('svg')}
 hchart(
   vote_donut, "pie", hcaes(name = party, y = vote, color= colors),
@@ -81,17 +80,15 @@ hchart(
     hideDelay = 1000
   )
 ```
-</div>
-</div>
+
 
 
 -------------------
 
-## Tendencia acumulada
+## Tendencia acumulada {.tabset}
 
-<div class = "row">
-<div class = "col-md-6">
-**Predicción diaria sobre el gobierno resultante**
+
+### Gobierno resultante
 ```{r cars2,  warning = FALSE, echo = FALSE, dev=c('svg')}
 highchart() %>% 
   hc_xAxis(categories = government_spread$date, tickInterval = 1) %>% 
@@ -106,9 +103,10 @@ highchart() %>%
              shared = TRUE, borderWidth = 0, sort = TRUE,  table = TRUE)
 
 ```
-</div>
-<div class = "col-md-6">
- **Predicción diaria de voto y escaños a partidos**
+
+
+### Voto y escaños a partidos
+
 ```{r pressure2, warning = FALSE, echo=FALSE, dev=c('svg')}
 
 hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #good
@@ -127,13 +125,13 @@ hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #
   hc_xAxis(title = list(text = " ")) %>% 
   hc_yAxis(title = list(text = "Porcentaje de voto% (escaños")) 
 ```
-</div>
-</div>
+
 
 -------------------
 
-## Tablas de progreso diario
+## Tablas de progreso diario {.tabset}
 
+### Gobierno resultante
 ```{r holio03, echo=FALSE, out.width = '20%'}
 myColors_gen <- c("#0000BA", "#9A0000", "#A9A9A9", "#C57420", "#FF3827", "#FF9300", "#04AAFF")
  
@@ -152,6 +150,12 @@ datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobie
   formatStyle('party', fontWeight = 'bold')
 ```
 
+
+_____
+
+Alberto López Ortega _alberto.lopezortega@uzh.ch_ , [bertous](https://twitter.com/bertous)
+
+### Voto y escaños a partidos
 
 ```{r holio02, echo=FALSE, out.width = '20%'}
 datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia (voto)', 'Escaños', 'Tendencia (escaños)'), extensions = 'FixedColumns',
