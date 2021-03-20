@@ -12,8 +12,6 @@ output:
     theme: readable
     highlight: tango
 navbar:
-  logo:
-    image: /predi.png
   left:
   - text: "Inicio"
     href: index.html
