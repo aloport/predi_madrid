@@ -23,7 +23,7 @@ datatable(head(government_table, 6), rownames=FALSE, colnames = c('Tipo de gobie
 
 
 ```{r holio02, echo=FALSE, out.width = '20%'}
-datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Tendencia (voto)', 'Escaños', 'Tendencia (escaños)'), extensions = 'FixedColumns',
+datatable(vote_table, rownames=FALSE, colnames = c('Partido', 'Voto', 'Variación desde ayer (voto)', 'Escaños', 'Variación desde ayer (escaños)'), extensions = 'FixedColumns',
   options = list(
     dom = 'r',
     scrollX = TRUE,
