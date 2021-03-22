@@ -50,12 +50,13 @@ highchart() %>%
 ### Voto y escaños a partidos
 ```{r pressure, warning = FALSE, echo=FALSE, dev=c('svg')}
 hchart(
-  vote_donut, "pie", hcaes(name = party, y = vote, color= colors),
+  vote_donut, "pie", hcaes(name = party, y = vote),
   name = "Escaños",
   innerSize = "60%",
   startAngle = -90, endAngle = 90,
   dataLabels = list(format = "{point.name}, {point.vote} <br> ({point.seats})")
 ) %>% 
+  hc_colors(c("#3C88D0","#DA3832","#623165","#82ECAB","#75BE4C","#E75D29")) %>% 
   # con la siguiente opción desactivamos los 'dataLabels' para que no 
   # exista infomración redundante
   hc_plotOptions(
@@ -125,9 +126,7 @@ hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #
     borderWidth = 0
   ) %>% 
   hc_xAxis(title = list(text = " ")) %>% 
-  hc_yAxis(title = list(text = "Porcentaje de voto% (escaños")) %>% 
-  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FBFEFF",
-             shared = TRUE, borderWidth = 0, sort = TRUE,  table = TRUE)
+  hc_yAxis(title = list(text = "Porcentaje de voto% (escaños")) 
 ```
 
 
