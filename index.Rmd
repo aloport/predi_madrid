@@ -112,11 +112,12 @@ highchart() %>%
 
 ```{r pressure2, warning = FALSE, echo=FALSE, dev=c('svg')}
 
-hchart(vote_lines, "line", hcaes(date, vote, group = party), color=c("#E75D29" #good
+hchart(vote_lines, "line", hcaes(date, vote, group = party), 
+       color=c("#623165" #good
         ,"#82ECAB"
-        ,"#3C88D0" #good
-        , "#DA3832" #good
-        ,  "#623165"
+        , "#DA3832"
+        , "#E75D29" #good
+        ,  "#3C88D0"
         , "#75BE4C" )) %>% 
   hc_tooltip(
     pointFormat = "<span  style='color: {series.color}'> {series.name} <b>{point.y}</b><br/>(Escaños:{point.seats})</span>",
