@@ -56,7 +56,7 @@ hchart(
   startAngle = -90, endAngle = 90,
   dataLabels = list(format = "{point.name}, {point.vote} <br> ({point.seats})")
 ) %>% 
-  hc_colors(c("#3C88D0","#DA3832","#623165","#82ECAB","#75BE4C","#E75D29")) %>% 
+  hc_colors(c("#3C88D0","#DA3832","#82ECAB","#623165","#75BE4C","#E75D29")) %>% 
   # con la siguiente opción desactivamos los 'dataLabels' para que no 
   # exista infomración redundante
   hc_plotOptions(
