@@ -4,11 +4,20 @@ library(summarytools)
 library(haven)
 
 
-madsur_raw <- read_sav('/Users/ortega/Dropbox/My Mac (pwiortega-mac.local)/Downloads/UNZUES_218856/UNZUES_218856.sav')
+madsur_raw<- read_sav('/Users/ortega/Dropbox/My Mac (pwiortega-mac.local)/Downloads/UNZUES_218856/UNZUES_218856.sav') %>% 
+  mutate(wave=1) 
+  
+
+madsur2_raw<- read_sav('/Users/ortega/Dropbox/Side projects/S1 - Predi w Strijbis/Prediction markets/predi_madrid21/UNZUES_218856_w2_20210423.sav') %>% 
+  mutate(wave=2)
+
+madsur3_raw<- read_sav('/Users/ortega/Dropbox/Side projects/S1 - Predi w Strijbis/Prediction markets/predi_madrid21/UNZUES_218856_w3_20210503.sav') %>% 
+  mutate(wave=3)
 
 
-madsur_clean <- madsur_raw %>% 
-select(gender=SEXO, age=EDADR, edu=EDUCACION, political_interest= P1,
+
+madsur_clean <- full_join(madsur1_raw, madsur2_raw) %>% full_join(., madsur3_raw) %>% 
+select(wave, gender=SEXO, age=EDADR, edu=EDUCACION, political_interest= P1,
          partisanship_pp= P2_1, partisanship_ps= P2_2, partisanship_mm= P2_3,
          partisanship_up= P2_4, partisanship_vx= P2_5,partisanship_cs= P2_6,
          partisanship_no= "P2_NO#1", partisanship_one= P2R_1, partisanship_two= P2R_2,
@@ -45,7 +54,7 @@ summary(model_gov)
 
 
 polarised_who <- madsur_clean %>% 
-  group_by(partisanship_one) %>% 
-  summarise(across( .cols = c("polarisation", "political_interest"), .fns = list(Mean = mean, SD = sd))) %>% 
+  group_by(partisanship_one, wave) %>% 
+  summarise(across( .cols = c("polarisation", "political_interest", "likely_government"), .fns = list(Mean = mean, SD = sd))) %>% 
    drop_na(partisanship_one) %>% mutate(polarisation_Mean= 10-polarisation_Mean, 
                                         political_interest_Mean= 10-political_interest_Mean)
